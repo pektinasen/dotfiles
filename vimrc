@@ -113,3 +113,5 @@ au FocusLost * :wa
 
 inoremap jj <ESC>
 
+nnoremap <leader>n :NERDTreeToggle<cr>
+
