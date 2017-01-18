@@ -1,62 +1,44 @@
 set nocompatible
-filetype off                  " required
+filetype off 
 
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
+Plugin 'wincent/command-t'
+Plugin 'desert-warm-256'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'https://github.com/scrooloose/nerdtree'
+Plugin 'ekalinin/Dockerfile.vim'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-augroup reload_vimrc " {
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END " }
+call vundle#end()
+filetype plugin indent on
 
 set modelines=0
 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2     " a tab is four spaces
+set shiftwidth=2  " number of spaces to use for autoindenting
+set softtabstop=2
 set expandtab
+set backspace=indent,eol,start
+                    " allow backspacing over everything in insert mode
+set copyindent    " copy the previous indentation on autoindenting
+set relativenumber        " always show line numbers
+set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
+set showmatch     " set show matching parenthesis
+set ignorecase    " ignore case when searching
+set smartcase     " ignore case if search pattern is all lowercase,
+                    "    case-sensitive otherwise
+set smarttab      " insert tabs on the start of a line according to
+                    "    shiftwidth, not tabstop
+set hlsearch      " highlight search terms
+set incsearch     " show search matches as you type
 
 set encoding=utf-8
 set scrolloff=3
-set autoindent
+set autoindent    " always set autoindenting on
 set showmode
 set showcmd
 set hidden
@@ -71,7 +53,6 @@ set laststatus=2
 set relativenumber
 set undofile
 
-let mapleader = ","
 nnoremap / /\v
 vnoremap / /\v
 set ignorecase
@@ -84,24 +65,41 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 
+set history=1000         " remember more commands and search history
+set undolevels=1000      " use many muchos levels of undo
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set title                " change the terminal's title
+set noerrorbells         " don't beep
+
+set nobackup
+set noswapfile
+
+syntax on
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
+" colorscheme desert-warm-256
+
+autocmd bufwritepost .vimrc source $MYVIMRC
+
+let mapleader=","
+set list
+"set listchars=tab:▸\ .,trail:.,extends:#,nbsp:.,eol:¬
+set listchars=tab:▸\ ,eol:¬
+
 set wrap
 set textwidth=79
 set formatoptions=qrn1
 set colorcolumn=85
 
-set list
-set listchars=tab:▸\ ,eol:¬
-
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
+
+" handling windows 
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
@@ -111,7 +109,7 @@ nnoremap ; :
 
 au FocusLost * :wa
 
-inoremap jj <ESC>
+inoremap jj <Esc>
 
 nnoremap <leader>n :NERDTreeToggle<cr>
 
