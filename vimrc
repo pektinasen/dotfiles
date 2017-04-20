@@ -1,8 +1,8 @@
 set nocompatible
 filetype off 
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin('~/config/nvim/bundle')
 
 Plugin 'VundleVim/Vundle.vim'
 
@@ -12,6 +12,8 @@ Plugin 'desert-warm-256'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'https://github.com/scrooloose/nerdtree'
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'qpkorr/vim-bufkill'
+Plugin 'mattn/emmet-vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -61,9 +63,6 @@ set gdefault
 set incsearch
 set showmatch
 set hlsearch
-nnoremap <leader><space> :noh<cr>
-nnoremap <tab> %
-vnoremap <tab> %
 
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
@@ -83,6 +82,9 @@ colorscheme solarized
 autocmd bufwritepost .vimrc source $MYVIMRC
 
 let mapleader=","
+nnoremap <leader><space> :noh<cr>
+nnoremap <tab> %
+vnoremap <tab> %
 set list
 "set listchars=tab:▸\ .,trail:.,extends:#,nbsp:.,eol:¬
 set listchars=tab:▸\ ,eol:¬
