@@ -1,8 +1,13 @@
 set nocompatible
 filetype off 
 
+" NeoVim dir
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin('~/config/nvim/bundle')
+
+" vim dir
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
